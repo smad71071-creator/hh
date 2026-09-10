@@ -1,0 +1,3328 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+
+    <meta name="theme-color" content="#050b14">
+
+    <title>SHOCK STORE | المنصة الأولى لاشتراكات IPTV في العراق</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tajawal -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap"
+          rel="stylesheet">
+
+    <style>
+
+        /* =========================================================
+           ROOT
+        ========================================================= */
+
+        :root {
+            --bg-main: #050b14;
+            --bg-card: rgba(13, 22, 45, 0.84);
+            --bg-card-hover: rgba(20, 35, 65, 0.97);
+
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
+
+            --primary: #00f0ff;
+            --secondary: #3b82f6;
+
+            --primary-glow: rgba(0, 240, 255, 0.65);
+            --secondary-glow: rgba(59, 130, 246, 0.4);
+
+            --nav-bg: rgba(5, 11, 20, 0.9);
+
+            --border-color: rgba(0, 240, 255, 0.23);
+
+            --card-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.6);
+
+            --radius: 24px;
+
+            --transition:
+                0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .light-mode {
+
+            --bg-main: #f4f7f9;
+
+            --bg-card: rgba(255, 255, 255, 0.94);
+            --bg-card-hover: #ffffff;
+
+            --text-main: #111827;
+            --text-muted: #4b5563;
+
+            --primary: #0284c7;
+            --secondary: #2563eb;
+
+            --primary-glow: rgba(2, 132, 199, 0.45);
+            --secondary-glow: rgba(37, 99, 235, 0.3);
+
+            --nav-bg: rgba(244, 247, 249, 0.95);
+
+            --border-color: rgba(2, 132, 199, 0.25);
+
+            --card-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+
+            background-color: var(--bg-main);
+
+            color: var(--text-main);
+
+            transition:
+                background-color 0.4s ease,
+                color 0.4s ease;
+
+            overflow-x: hidden;
+
+            background-image:
+
+                radial-gradient(
+                    circle at top right,
+                    rgba(0,240,255,0.045),
+                    transparent 35%
+                ),
+
+                radial-gradient(
+                    circle at bottom left,
+                    rgba(59,130,246,0.045),
+                    transparent 35%
+                );
+        }
+
+
+        /* =========================================================
+           SCROLLBAR
+        ========================================================= */
+
+        ::-webkit-scrollbar {
+            width: 9px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-main);
+        }
+
+        ::-webkit-scrollbar-thumb {
+
+            background:
+                linear-gradient(
+                    var(--secondary),
+                    var(--primary)
+                );
+
+            border-radius: 20px;
+        }
+
+
+        /* =========================================================
+           GLOBAL GLOW
+        ========================================================= */
+
+        body::before {
+
+            content: "";
+
+            position: fixed;
+
+            width: 350px;
+            height: 350px;
+
+            left: -180px;
+            bottom: -180px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0,240,255,0.12),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+
+            z-index: -1;
+
+            animation:
+                floatingGlow 7s ease-in-out infinite;
+        }
+
+        @keyframes floatingGlow {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(40px, -30px);
+            }
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 75px;
+
+            background: var(--nav-bg);
+
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 4%;
+
+            z-index: 1000;
+
+            border-bottom:
+                1px solid var(--border-color);
+
+            box-shadow:
+                0 4px 25px rgba(0,0,0,0.2);
+
+            transition:
+                all 0.35s ease;
+        }
+
+        header.scrolled {
+
+            height: 68px;
+
+            box-shadow:
+                0 8px 30px rgba(0,0,0,0.4);
+        }
+
+
+        /* =========================================================
+           LOGO
+        ========================================================= */
+
+        .logo-container {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            text-decoration: none;
+
+            transition:
+                transform var(--transition);
+        }
+
+        .logo-container:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-img {
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border:
+                2px solid var(--primary);
+
+            box-shadow:
+                0 0 15px var(--primary-glow);
+
+            transition:
+                transform 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .logo-container:hover .logo-img {
+
+            transform:
+                rotate(12deg)
+                scale(1.08);
+
+            box-shadow:
+                0 0 25px var(--primary-glow),
+                0 0 45px var(--primary-glow);
+        }
+
+        .logo-text {
+
+            font-size: 1.5rem;
+
+            font-weight: 900;
+
+            color: var(--text-main);
+
+            text-shadow:
+                0 0 8px rgba(0,240,255,0.4);
+        }
+
+
+        /* =========================================================
+           NAV
+        ========================================================= */
+
+        .nav-links {
+
+            display: flex;
+
+            gap: 25px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+
+            color: var(--text-main);
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            font-size: 1.05rem;
+
+            position: relative;
+
+            padding: 10px 0;
+
+            transition:
+                color 0.3s ease;
+        }
+
+        .nav-links a::after {
+
+            content: "";
+
+            position: absolute;
+
+            right: 0;
+            bottom: 3px;
+
+            width: 0;
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--secondary),
+                    var(--primary)
+                );
+
+            box-shadow:
+                0 0 8px var(--primary);
+
+            transition:
+                width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+
+            color: var(--primary);
+        }
+
+        .nav-links a:hover::after {
+
+            width: 100%;
+        }
+
+
+        /* =========================================================
+           THEME BUTTON
+        ========================================================= */
+
+        .theme-btn {
+
+            background: transparent;
+
+            border:
+                1px solid var(--border-color);
+
+            color: var(--primary);
+
+            width: 42px;
+            height: 42px;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            font-size: 1.2rem;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s ease,
+                background-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .theme-btn:hover {
+
+            transform: rotate(15deg) scale(1.08);
+
+            background:
+                rgba(0,240,255,0.08);
+
+            box-shadow:
+                0 0 20px var(--primary-glow);
+        }
+
+        .theme-btn:active {
+
+            transform:
+                scale(0.88)
+                rotate(-15deg);
+        }
+
+
+        /* =========================================================
+           SECTION
+        ========================================================= */
+
+        .section {
+
+            padding:
+                100px 4% 60px;
+
+            position: relative;
+        }
+
+        .section::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 30px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: min(700px, 90%);
+
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--primary-glow),
+                    transparent
+                );
+
+            opacity: 0.5;
+        }
+
+
+        /* =========================================================
+           SECTION TITLE
+        ========================================================= */
+
+        .section-title {
+
+            text-align: center;
+
+            margin-bottom: 50px;
+
+            opacity: 0;
+
+            transform:
+                translateY(35px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .section-title.revealed {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+        .section-title h2 {
+
+            font-size: 2.5rem;
+
+            font-weight: 900;
+
+            margin-bottom: 10px;
+
+            color: var(--text-main);
+
+            position: relative;
+
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: -8px;
+
+            right: 50%;
+
+            transform: translateX(50%);
+
+            width: 70px;
+            height: 3px;
+
+            border-radius: 20px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--secondary),
+                    var(--primary)
+                );
+
+            box-shadow:
+                0 0 12px var(--primary-glow);
+        }
+
+        .section-title p {
+
+            color: var(--text-muted);
+
+            font-size: 1.1rem;
+
+            margin-top: 25px;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            padding:
+                140px 4% 80px;
+
+            min-height: 90vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            flex-wrap: wrap;
+
+            gap: 40px;
+
+            position: relative;
+        }
+
+        .hero-content {
+
+            flex: 1 1 500px;
+
+            opacity: 0;
+
+            transform:
+                translateX(50px);
+
+            animation:
+                heroContent 1s ease forwards;
+        }
+
+        @keyframes heroContent {
+
+            to {
+
+                opacity: 1;
+
+                transform:
+                    translateX(0);
+            }
+        }
+
+        .badge {
+
+            display: inline-block;
+
+            background:
+                rgba(0, 240, 255, 0.1);
+
+            border:
+                1px solid var(--primary);
+
+            color: var(--primary);
+
+            padding:
+                8px 16px;
+
+            border-radius:
+                50px;
+
+            font-size:
+                0.95rem;
+
+            font-weight: 700;
+
+            margin-bottom:
+                20px;
+
+            box-shadow:
+                0 0 15px rgba(0,240,255,0.12);
+
+            animation:
+                badgeGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes badgeGlow {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 10px rgba(0,240,255,0.08);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 25px rgba(0,240,255,0.3);
+            }
+        }
+
+        .hero h1 {
+
+            font-size:
+                clamp(2.5rem, 5vw, 4rem);
+
+            line-height: 1.2;
+
+            font-weight: 900;
+
+            margin-bottom:
+                20px;
+        }
+
+        .hero h1 span {
+
+            color: var(--primary);
+
+            text-shadow:
+                0 0 20px var(--primary-glow);
+        }
+
+        .hero p {
+
+            font-size:
+                1.15rem;
+
+            color:
+                var(--text-muted);
+
+            line-height:
+                1.7;
+
+            margin-bottom:
+                30px;
+
+            max-width:
+                600px;
+        }
+
+
+        /* =========================================================
+           BUTTONS
+        ========================================================= */
+
+        .btn-primary {
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    45deg,
+                    var(--secondary),
+                    var(--primary)
+                );
+
+            color:
+                #000;
+
+            padding:
+                16px 32px;
+
+            border-radius:
+                12px;
+
+            text-decoration:
+                none;
+
+            font-size:
+                1.15rem;
+
+            font-weight:
+                900;
+
+            box-shadow:
+                0 8px 20px var(--primary-glow);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .btn-primary:hover {
+
+            transform:
+                translateY(-4px)
+                scale(1.03);
+
+            box-shadow:
+                0 12px 35px var(--primary-glow);
+        }
+
+        .btn-primary:active {
+
+            transform:
+                scale(0.96);
+        }
+
+
+        /* =========================================================
+           RIPPLE
+        ========================================================= */
+
+        .ripple {
+
+            position: absolute;
+
+            border-radius: 50%;
+
+            transform:
+                scale(0);
+
+            animation:
+                ripple-animation 0.6s linear;
+
+            background:
+                rgba(255,255,255,0.5);
+
+            pointer-events:
+                none;
+        }
+
+        @keyframes ripple-animation {
+
+            to {
+
+                transform:
+                    scale(4);
+
+                opacity:
+                    0;
+            }
+        }
+
+
+        /* =========================================================
+           HERO IMAGE
+        ========================================================= */
+
+        .hero-image {
+
+            flex: 1 1 400px;
+
+            text-align:
+                center;
+
+            opacity:
+                0;
+
+            transform:
+                translateX(-50px);
+
+            animation:
+                heroImage 1s 0.15s ease forwards;
+        }
+
+        @keyframes heroImage {
+
+            to {
+
+                opacity:
+                    1;
+
+                transform:
+                    translateX(0);
+            }
+        }
+
+        .hero-image img {
+
+            width:
+                100%;
+
+            max-width:
+                450px;
+
+            border-radius:
+                20px;
+
+            border:
+                2px solid var(--border-color);
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,0.6),
+                0 0 30px var(--primary-glow);
+
+            animation:
+                heroFloat 5s ease-in-out infinite;
+
+            transition:
+                transform 0.45s ease,
+                box-shadow 0.45s ease;
+        }
+
+        .hero-image img:hover {
+
+            transform:
+                scale(1.025)
+                rotateY(4deg);
+
+            box-shadow:
+                0 25px 50px rgba(0,0,0,0.6),
+                0 0 45px var(--primary-glow);
+        }
+
+        @keyframes heroFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-10px);
+            }
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about-box {
+
+            background:
+                var(--bg-card);
+
+            border:
+                1px solid var(--border-color);
+
+            border-radius:
+                20px;
+
+            padding:
+                40px;
+
+            text-align:
+                center;
+
+            max-width:
+                900px;
+
+            margin:
+                0 auto;
+
+            box-shadow:
+                var(--card-shadow);
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            opacity:
+                0;
+
+            transform:
+                translateY(45px);
+
+            transition:
+                transform 0.8s ease,
+                opacity 0.8s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .about-box::before {
+
+            content: "";
+
+            position:
+                absolute;
+
+            top: -2px;
+            left: -100%;
+
+            width: 100%;
+            height: 2px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--primary),
+                    transparent
+                );
+
+            box-shadow:
+                0 0 15px var(--primary);
+
+            animation:
+                ledLine 4s linear infinite;
+        }
+
+        @keyframes ledLine {
+
+            0% {
+                left: -100%;
+            }
+
+            100% {
+                left: 100%;
+            }
+        }
+
+        .about-box.revealed {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0);
+        }
+
+        .about-box:hover {
+
+            box-shadow:
+                0 20px 45px rgba(0,0,0,0.45),
+                0 0 25px rgba(0,240,255,0.08);
+        }
+
+        .about-box p {
+
+            font-size:
+                clamp(1.2rem, 3vw, 1.5rem);
+
+            line-height:
+                1.8;
+
+            font-weight:
+                500;
+        }
+
+
+        /* =========================================================
+           OFFERS
+        ========================================================= */
+
+        .offers-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
+            gap:
+                25px;
+
+            max-width:
+                1200px;
+
+            margin:
+                0 auto;
+        }
+
+        .offer-card {
+
+            background:
+                var(--bg-card);
+
+            border:
+                1px solid var(--border-color);
+
+            border-radius:
+                20px;
+
+            padding:
+                35px 25px;
+
+            text-align:
+                center;
+
+            box-shadow:
+                var(--card-shadow);
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            opacity:
+                0;
+
+            transform:
+                translateY(55px);
+
+            transition:
+                opacity 0.7s ease,
+                transform 0.45s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .offer-card.revealed {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0);
+        }
+
+        .offer-card:nth-child(2) {
+            transition-delay:
+                0.12s;
+        }
+
+        .offer-card:nth-child(3) {
+            transition-delay:
+                0.24s;
+        }
+
+        .offer-card::before {
+
+            content: "";
+
+            position:
+                absolute;
+
+            inset:
+                0;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    transparent 20%,
+                    rgba(0,240,255,0.06),
+                    transparent 80%
+                );
+
+            transform:
+                translateX(100%);
+
+            transition:
+                transform 0.7s ease;
+
+            pointer-events:
+                none;
+        }
+
+        .offer-card:hover::before {
+
+            transform:
+                translateX(-100%);
+        }
+
+        .offer-card:hover {
+
+            transform:
+                translateY(-10px)
+                scale(1.02);
+
+            box-shadow:
+                0 20px 40px rgba(0,0,0,0.4),
+                0 0 25px rgba(0,240,255,0.12);
+        }
+
+        .offer-icon {
+
+            font-size:
+                3.5rem;
+
+            color:
+                var(--primary);
+
+            margin-bottom:
+                20px;
+
+            filter:
+                drop-shadow(
+                    0 0 10px
+                    var(--primary-glow)
+                );
+
+            transition:
+                transform 0.4s ease;
+        }
+
+        .offer-card:hover .offer-icon {
+
+            transform:
+                scale(1.15)
+                rotate(-5deg);
+        }
+
+        .offer-card h3 {
+
+            font-size:
+                1.6rem;
+
+            margin-bottom:
+                12px;
+        }
+
+        .offer-card p {
+
+            color:
+                var(--text-muted);
+
+            font-size:
+                1.05rem;
+
+            line-height:
+                1.7;
+        }
+
+
+        /* =========================================================
+           PACKAGES
+        ========================================================= */
+
+        .packages-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(300px, 1fr)
+                );
+
+            gap:
+                30px;
+
+            max-width:
+                1200px;
+
+            margin:
+                0 auto;
+
+            align-items:
+                stretch;
+        }
+
+
+        /* =========================================================
+           PACKAGE CARD + LED
+        ========================================================= */
+
+        .package-card {
+
+            background:
+                var(--bg-card);
+
+            border:
+                1px solid transparent;
+
+            border-radius:
+                var(--radius);
+
+            padding:
+                40px 25px;
+
+            box-shadow:
+                var(--card-shadow);
+
+            display:
+                flex;
+
+            flex-direction:
+                column;
+
+            justify-content:
+                space-between;
+
+            height:
+                100%;
+
+            position:
+                relative;
+
+            isolation:
+                isolate;
+
+            overflow:
+                hidden;
+
+            opacity:
+                0;
+
+            transform:
+                translateY(70px)
+                scale(0.97);
+
+            transition:
+                opacity 0.75s ease,
+                transform 0.45s ease,
+                box-shadow 0.4s ease;
+        }
+
+        /*
+           طبقة LED الخارجية
+        */
+
+        .package-card::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                -3px;
+
+            border-radius:
+                inherit;
+
+            background:
+                conic-gradient(
+                    from 0deg,
+                    transparent 0deg,
+                    transparent 50deg,
+                    var(--primary) 90deg,
+                    var(--secondary) 150deg,
+                    transparent 210deg,
+                    transparent 360deg
+                );
+
+            animation:
+                rotateLED 3.2s linear infinite;
+
+            z-index:
+                -2;
+
+            filter:
+                blur(1px);
+        }
+
+        /*
+           طبقة داخلية لإظهار الحافة
+        */
+
+        .package-card::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            inset:
+                2px;
+
+            background:
+                var(--bg-card);
+
+            border-radius:
+                calc(var(--radius) - 2px);
+
+            z-index:
+                -1;
+        }
+
+        @keyframes rotateLED {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+        }
+
+        .package-card.revealed {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0)
+                scale(1);
+        }
+
+        .package-card:hover {
+
+            transform:
+                translateY(-12px)
+                scale(1.025);
+
+            box-shadow:
+                0 25px 50px rgba(0,0,0,0.55),
+                0 0 35px
+                rgba(0,240,255,0.16);
+        }
+
+
+        /* =========================================================
+           POPULAR PACKAGE
+        ========================================================= */
+
+        .package-card.popular {
+
+            border:
+                2px solid var(--primary);
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(20,35,65,0.96) 0%,
+                    var(--bg-card) 100%
+                );
+
+            transform:
+                scale(1.03);
+
+            z-index:
+                2;
+
+            box-shadow:
+                0 0 30px
+                rgba(0,240,255,0.18);
+        }
+
+        .package-card.popular::before {
+
+            background:
+                conic-gradient(
+                    from 0deg,
+                    transparent 0deg,
+                    var(--primary) 55deg,
+                    #ffffff 90deg,
+                    var(--primary) 125deg,
+                    var(--secondary) 180deg,
+                    transparent 240deg,
+                    transparent 360deg
+                );
+
+            animation:
+                rotateLED 2.3s linear infinite;
+
+            filter:
+                blur(3px);
+        }
+
+        .package-card.popular:hover {
+
+            transform:
+                translateY(-14px)
+                scale(1.045);
+
+            box-shadow:
+                0 30px 60px rgba(0,0,0,0.55),
+                0 0 45px
+                rgba(0,240,255,0.28);
+        }
+
+
+        /* =========================================================
+           POPULAR BADGE
+        ========================================================= */
+
+        .popular-badge {
+
+            position:
+                absolute;
+
+            top:
+                -15px;
+
+            left:
+                50%;
+
+            transform:
+                translateX(-50%);
+
+            background:
+                linear-gradient(
+                    45deg,
+                    var(--secondary),
+                    var(--primary)
+                );
+
+            color:
+                #000;
+
+            padding:
+                7px 22px;
+
+            border-radius:
+                20px;
+
+            font-size:
+                0.95rem;
+
+            font-weight:
+                900;
+
+            white-space:
+                nowrap;
+
+            box-shadow:
+                0 0 20px
+                var(--primary-glow);
+
+            animation:
+                badgePulse 2s ease-in-out infinite;
+
+            z-index:
+                5;
+        }
+
+        @keyframes badgePulse {
+
+            0%,
+            100% {
+                box-shadow:
+                    0 0 12px
+                    var(--primary-glow);
+            }
+
+            50% {
+                box-shadow:
+                    0 0 30px
+                    var(--primary-glow);
+            }
+        }
+
+
+        /* =========================================================
+           PACKAGE HEADER
+        ========================================================= */
+
+        .package-header {
+
+            text-align:
+                center;
+
+            border-bottom:
+                1px solid
+                rgba(255,255,255,0.05);
+
+            padding-bottom:
+                20px;
+
+            margin-bottom:
+                25px;
+        }
+
+        .package-header h3 {
+
+            font-size:
+                1.9rem;
+
+            font-weight:
+                900;
+
+            color:
+                var(--primary);
+
+            margin-bottom:
+                8px;
+
+            text-shadow:
+                0 0 15px
+                rgba(0,240,255,0.15);
+        }
+
+
+        /* =========================================================
+           FEATURES
+        ========================================================= */
+
+        .package-features {
+
+            list-style:
+                none;
+
+            margin-bottom:
+                30px;
+
+            flex-grow:
+                1;
+        }
+
+        .package-features li {
+
+            padding:
+                14px 0;
+
+            font-size:
+                1.1rem;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                12px;
+
+            border-bottom:
+                1px dashed
+                rgba(255,255,255,0.05);
+
+            transition:
+                transform 0.3s ease,
+                color 0.3s ease;
+        }
+
+        .package-card:hover
+        .package-features li {
+
+            transform:
+                translateX(-5px);
+        }
+
+        .package-features li i {
+
+            color:
+                var(--primary);
+
+            filter:
+                drop-shadow(
+                    0 0 5px
+                    var(--primary-glow)
+                );
+        }
+
+
+        /* =========================================================
+           ORDER BUTTON
+        ========================================================= */
+
+        .btn-order {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            width:
+                100%;
+
+            background:
+                linear-gradient(
+                    45deg,
+                    #25d366,
+                    #128c7e
+                );
+
+            color:
+                white;
+
+            padding:
+                16px;
+
+            border-radius:
+                12px;
+
+            text-decoration:
+                none;
+
+            font-size:
+                1.2rem;
+
+            font-weight:
+                900;
+
+            box-shadow:
+                0 8px 20px
+                rgba(37,211,102,0.2);
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+        .btn-order::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            right:
+                -100%;
+
+            width:
+                60%;
+
+            height:
+                100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(255,255,255,0.25),
+                    transparent
+                );
+
+            transform:
+                skewX(-20deg);
+
+            transition:
+                right 0.55s ease;
+        }
+
+        .btn-order:hover::before {
+
+            right:
+                140%;
+        }
+
+        .btn-order:hover {
+
+            transform:
+                translateY(-3px)
+                scale(1.02);
+
+            box-shadow:
+                0 12px 30px
+                rgba(37,211,102,0.35);
+        }
+
+        .btn-order:active {
+
+            transform:
+                scale(0.95);
+        }
+
+
+        /* =========================================================
+           CLICK EFFECT ON PACKAGE
+        ========================================================= */
+
+        .package-card.selected {
+
+            animation:
+                packageSelected 0.7s ease;
+        }
+
+        @keyframes packageSelected {
+
+            0% {
+                transform:
+                    scale(1);
+            }
+
+            35% {
+                transform:
+                    scale(1.045);
+            }
+
+            65% {
+                transform:
+                    scale(0.985);
+            }
+
+            100% {
+                transform:
+                    scale(1);
+            }
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            background:
+                #02050a;
+
+            border-top:
+                1px solid var(--border-color);
+
+            padding:
+                50px 4% 30px;
+
+            text-align:
+                center;
+
+            position:
+                relative;
+
+            overflow:
+                hidden;
+        }
+
+        footer::before {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                0;
+
+            left:
+                -100%;
+
+            width:
+                100%;
+
+            height:
+                1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--primary),
+                    transparent
+                );
+
+            animation:
+                ledLine 5s linear infinite;
+        }
+
+        .footer-logo {
+
+            font-size:
+                2rem;
+
+            font-weight:
+                900;
+
+            color:
+                var(--primary);
+
+            margin-bottom:
+                15px;
+
+            text-shadow:
+                0 0 15px
+                var(--primary-glow);
+        }
+
+        .social-links {
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            gap:
+                20px;
+
+            margin-bottom:
+                30px;
+        }
+
+        .social-btn {
+
+            width:
+                55px;
+
+            height:
+                55px;
+
+            border-radius:
+                50%;
+
+            background:
+                var(--bg-card);
+
+            border:
+                1px solid var(--border-color);
+
+            color:
+                var(--text-main);
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            font-size:
+                1.5rem;
+
+            text-decoration:
+                none;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .social-btn:hover {
+
+            transform:
+                translateY(-7px)
+                scale(1.08);
+
+            box-shadow:
+                0 10px 25px
+                rgba(0,0,0,0.35);
+        }
+
+        .social-btn.insta {
+            background:
+                linear-gradient(
+                    45deg,
+                    #f09433,
+                    #dc2743
+                );
+            border: none;
+            color: white;
+        }
+
+        .social-btn.telegram {
+            background:
+                #0088cc;
+            border: none;
+            color: white;
+        }
+
+        .social-btn.whatsapp {
+            background:
+                #25d366;
+            border: none;
+            color: white;
+        }
+
+        .copyright {
+
+            color:
+                var(--text-muted);
+
+            font-size:
+                1rem;
+
+            border-top:
+                1px solid rgba(255,255,255,0.05);
+
+            padding-top:
+                20px;
+        }
+
+
+        /* =========================================================
+           FLOATING WHATSAPP
+        ========================================================= */
+
+        .floating-whatsapp {
+
+            position:
+                fixed;
+
+            bottom:
+                30px;
+
+            right:
+                30px;
+
+            background:
+                #25d366;
+
+            color:
+                white;
+
+            width:
+                60px;
+
+            height:
+                60px;
+
+            border-radius:
+                50%;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+
+            align-items:
+                center;
+
+            font-size:
+                2.2rem;
+
+            box-shadow:
+                0 10px 25px
+                rgba(37,211,102,0.4);
+
+            z-index:
+                999;
+
+            text-decoration:
+                none;
+
+            animation:
+                whatsappPulse 2.2s infinite;
+
+            transition:
+                transform 0.25s ease;
+        }
+
+        .floating-whatsapp:hover {
+
+            transform:
+                scale(1.1);
+
+            animation:
+                none;
+
+            box-shadow:
+                0 10px 35px
+                rgba(37,211,102,0.6);
+        }
+
+        @keyframes whatsappPulse {
+
+            0% {
+                box-shadow:
+                    0 0 0 0
+                    rgba(37,211,102,0.5);
+            }
+
+            70% {
+                box-shadow:
+                    0 0 0 18px
+                    rgba(37,211,102,0);
+            }
+
+            100% {
+                box-shadow:
+                    0 0 0 0
+                    rgba(37,211,102,0);
+            }
+        }
+
+
+        /* =========================================================
+           REVEAL SYSTEM
+        ========================================================= */
+
+        .reveal {
+
+            opacity:
+                0;
+
+            transform:
+                translateY(50px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s ease;
+        }
+
+        .reveal.revealed {
+
+            opacity:
+                1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================================
+           MOBILE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+
+                display:
+                    none;
+            }
+
+            .hero {
+
+                text-align:
+                    center;
+
+                padding-top:
+                    120px;
+
+                flex-direction:
+                    column;
+            }
+
+            .hero-content {
+
+                margin-bottom:
+                    20px;
+            }
+
+            .hero p {
+
+                margin-left:
+                    auto;
+
+                margin-right:
+                    auto;
+            }
+
+            .package-card.popular {
+
+                transform:
+                    scale(1);
+            }
+
+            .package-card.popular:hover {
+
+                transform:
+                    translateY(-8px)
+                    scale(1.015);
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .section {
+
+                padding:
+                    80px 5% 50px;
+            }
+
+            .section-title h2 {
+
+                font-size:
+                    2rem;
+            }
+
+            .about-box {
+
+                padding:
+                    28px 20px;
+            }
+
+            .package-card {
+
+                padding:
+                    35px 20px;
+            }
+
+            .floating-whatsapp {
+
+                width:
+                    56px;
+
+                height:
+                    56px;
+
+                right:
+                    18px;
+
+                bottom:
+                    18px;
+            }
+
+            .logo-text {
+
+                font-size:
+                    1.25rem;
+            }
+
+            header {
+
+                padding:
+                    0 18px;
+            }
+        }
+
+
+        /* =========================================================
+           REDUCED MOTION
+        ========================================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            * {
+
+                animation-duration:
+                    0.01ms !important;
+
+                animation-iteration-count:
+                    1 !important;
+
+                scroll-behavior:
+                    auto !important;
+
+                transition-duration:
+                    0.01ms !important;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header id="header">
+
+    <a href="#home"
+       class="logo-container">
+
+        <img
+            src="watermarked_img_5452985784351288058.jpg"
+            alt="SHOCK STORE Logo"
+            class="logo-img"
+            onerror="
+                this.src='https://cdn-icons-png.flaticon.com/512/616/616490.png'
+            "
+        >
+
+        <span class="logo-text">
+            SHOCK STORE
+        </span>
+
+    </a>
+
+
+    <ul class="nav-links">
+
+        <li>
+            <a href="#home">
+                الرئيسية
+            </a>
+        </li>
+
+        <li>
+            <a href="#about">
+                من نحن
+            </a>
+        </li>
+
+        <li>
+            <a href="#offers">
+                ماذا نقدم؟
+            </a>
+        </li>
+
+        <li>
+            <a href="#packages">
+                الاشتراكات
+            </a>
+        </li>
+
+    </ul>
+
+
+    <button
+        class="theme-btn"
+        id="theme-toggle"
+        title="تبديل الوضع"
+        aria-label="تبديل الوضع">
+
+        <i class="fas fa-sun"></i>
+
+    </button>
+
+</header>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section
+    class="hero"
+    id="home">
+
+    <div class="hero-content">
+
+        <span class="badge">
+
+            <i class="fas fa-bolt"></i>
+
+            الأسرع والأقوى في العراق
+
+        </span>
+
+
+        <h1>
+
+            استمتع بأفضل مشاهدة مع
+
+            <span>
+                SHOCK STORE
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            منصتك الشاملة لمشاهدة أحدث
+            الأفلام والمسلسلات والبطولات
+            الرياضية العالمية بأعلى جودة
+            وبدون أي تقطيع.
+
+        </p>
+
+
+        <a
+            href="#packages"
+            class="btn-primary ripple-btn">
+
+            <i class="fas fa-layer-group"></i>
+
+            استعرض الباقات
+
+        </a>
+
+    </div>
+
+
+    <div class="hero-image">
+
+        <img
+            src="watermarked_img_5452985784351288058.jpg"
+            alt="شعار SHOCK STORE"
+            onerror="
+                this.src='https://images.unsplash.com/photo-1574375927938-d5a98e8ffe85?q=80&w=600'
+            "
+        >
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section
+    class="section"
+    id="about">
+
+    <div class="section-title reveal">
+
+        <h2>
+            من نحن
+        </h2>
+
+        <p>
+            الجودة والمصداقية هي أساس عملنا
+        </p>
+
+    </div>
+
+
+    <div class="about-box reveal">
+
+        <p>
+
+            موقع
+            <strong>
+                SHOCK STORE
+            </strong>
+
+            هو موقع إلكتروني عراقي
+            يقدم لك اشتراكات متنوعة
+            تضمن لك مشاهدة الأفلام
+            والمسلسلات والقنوات الرياضية
+            العالمية بجودة عالية.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     OFFERS
+========================================================= -->
+
+<section
+    class="section"
+    id="offers">
+
+    <div class="section-title reveal">
+
+        <h2>
+            ماذا يقدم لكم SHOCK STORE؟
+        </h2>
+
+        <p>
+            عالم متكامل من الترفيه بين يديك بجودة لا تضاهى
+        </p>
+
+    </div>
+
+
+    <div class="offers-grid">
+
+        <div class="offer-card reveal">
+
+            <div class="offer-icon">
+
+                <i class="fas fa-film"></i>
+
+            </div>
+
+            <h3>
+                أفلام حصرية
+            </h3>
+
+            <p>
+
+                مشاهدة سينمائية بدقة
+                <strong>
+                    4K
+                </strong>
+                وبدون تقطيع.
+
+            </p>
+
+        </div>
+
+
+        <div class="offer-card reveal">
+
+            <div class="offer-icon">
+
+                <i class="fas fa-tv"></i>
+
+            </div>
+
+            <h3>
+                عالم المسلسلات
+            </h3>
+
+            <p>
+
+                تابع مسلسلاتك المفضلة
+                بجميع مواسمها وحلقاتها.
+
+            </p>
+
+        </div>
+
+
+        <div class="offer-card reveal">
+
+            <div class="offer-icon">
+
+                <i class="fas fa-futbol"></i>
+
+            </div>
+
+            <h3>
+                قنوات رياضية عالمية
+            </h3>
+
+            <p>
+
+                متابعة البطولات
+                والدوريات الرياضية العالمية
+                بثبات ممتاز.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PACKAGES
+========================================================= -->
+
+<section
+    class="section"
+    id="packages">
+
+    <div class="section-title reveal">
+
+        <h2>
+            باقات الاشتراك
+        </h2>
+
+        <p>
+            اختر الباقة المناسبة لك وابدأ المشاهدة فوراً
+        </p>
+
+    </div>
+
+
+    <div class="packages-grid">
+
+
+        <!-- الشهر -->
+
+        <div
+            class="package-card reveal">
+
+            <div>
+
+                <div class="package-header">
+
+                    <h3>
+                        اشتراك شهر واحد
+                    </h3>
+
+                    <p style="color: var(--text-muted)">
+                        تجربة ممتازة ومرنة
+                    </p>
+
+                </div>
+
+
+                <ul class="package-features">
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        15 ألف فيلم ومسلسل
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        قنوات رياضية عالمية
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        صيانة دورية للتطبيق
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        تحديثات مستمرة
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <a
+                href="https://wa.me/9647810930470?text=أهلاً%20SHOCK%20STORE،%20أريد%20الاشتراك%20في%20باقة%20الشهر%20الواحد"
+                target="_blank"
+                class="btn-order">
+
+                <i class="fab fa-whatsapp"></i>
+
+                أطلب الآن
+
+            </a>
+
+        </div>
+
+
+
+        <!-- 3 أشهر -->
+
+        <div
+            class="package-card reveal">
+
+            <div>
+
+                <div class="package-header">
+
+                    <h3>
+                        اشتراك 3 شهور
+                    </h3>
+
+                    <p style="color: var(--text-muted)">
+                        قيمة رائعة واستمتاع أطول
+                    </p>
+
+                </div>
+
+
+                <ul class="package-features">
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        15 ألف فيلم ومسلسل
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        قنوات رياضية وعالمية
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        صيانة دورية
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        تحديثات مهمة ومستمرة
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <a
+                href="https://wa.me/9647810930470?text=أهلاً%20SHOCK%20STORE،%20أريد%20الاشتراك%20في%20باقة%203%20شهور"
+                target="_blank"
+                class="btn-order">
+
+                <i class="fab fa-whatsapp"></i>
+
+                أطلب الآن
+
+            </a>
+
+        </div>
+
+
+
+        <!-- السنة -->
+
+        <div
+            class="package-card popular reveal">
+
+            <span class="popular-badge">
+
+                <i class="fas fa-crown"></i>
+
+                الأفضل والأكثر طلباً
+
+            </span>
+
+
+            <div>
+
+                <div class="package-header">
+
+                    <h3>
+                        اشتراك سنة كاملة
+                    </h3>
+
+                    <p style="color: var(--primary)">
+                        توفير كامل واستقرار تام
+                    </p>
+
+                </div>
+
+
+                <ul class="package-features">
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        17 ألف فيلم ومسلسل
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        قنوات رياضية وعالمية كاملة
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        صيانة دورية بشكل مستمر
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        ضمان استبدال سيرفر جديد
+                    </li>
+
+                    <li>
+                        <i class="fas fa-bolt"></i>
+                        تحديثات كبيرة مستمرة
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <a
+                href="https://wa.me/9647810930470?text=أهلاً%20SHOCK%20STORE،%20أريد%20الاشتراك%20في%20باقة%20السنة%20الكاملة"
+                target="_blank"
+                class="btn-order">
+
+                <i class="fab fa-whatsapp"></i>
+
+                أطلب الآن
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        SHOCK STORE ⚡
+    </div>
+
+
+    <p
+        style="
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        ">
+
+        متجرك العراقي الموثوق
+        لاشتراكات الترفيه العالمية
+
+    </p>
+
+
+    <div class="social-links">
+
+        <a
+            href="https://instagram.com/shock1.store"
+            target="_blank"
+            class="social-btn insta"
+            title="انستغرام">
+
+            <i class="fab fa-instagram"></i>
+
+        </a>
+
+
+        <a
+            href="https://t.me/wo6f2"
+            target="_blank"
+            class="social-btn telegram"
+            title="تيليجرام">
+
+            <i class="fab fa-telegram-plane"></i>
+
+        </a>
+
+
+        <a
+            href="https://wa.me/9647810930470"
+            target="_blank"
+            class="social-btn whatsapp"
+            title="واتساب">
+
+            <i class="fab fa-whatsapp"></i>
+
+        </a>
+
+    </div>
+
+
+    <div class="copyright">
+
+        جميع الحقوق محفوظة © 2026 لـ
+        <strong>
+            SHOCK STORE
+        </strong>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     FLOATING WHATSAPP
+========================================================= -->
+
+<a
+    href="https://wa.me/9647810930470"
+    target="_blank"
+    class="floating-whatsapp"
+    title="تواصل عبر الواتساب"
+    aria-label="واتساب">
+
+    <i class="fab fa-whatsapp"></i>
+
+</a>
+
+
+
+<script>
+
+    /* =========================================================
+       THEME
+    ========================================================= */
+
+    const themeBtn =
+        document.getElementById("theme-toggle");
+
+    const themeIcon =
+        themeBtn.querySelector("i");
+
+
+    function updateThemeIcon() {
+
+        if (
+            document.body.classList.contains("light-mode")
+        ) {
+
+            themeIcon.className =
+                "fas fa-moon";
+
+        } else {
+
+            themeIcon.className =
+                "fas fa-sun";
+        }
+    }
+
+
+    const savedTheme =
+        localStorage.getItem("shock-theme");
+
+    if (savedTheme === "light") {
+
+        document.body.classList.add("light-mode");
+
+    }
+
+    updateThemeIcon();
+
+
+    themeBtn.addEventListener("click", () => {
+
+        document.body.classList.toggle(
+            "light-mode"
+        );
+
+        const isLight =
+            document.body.classList.contains(
+                "light-mode"
+            );
+
+        localStorage.setItem(
+            "shock-theme",
+            isLight
+                ? "light"
+                : "dark"
+        );
+
+        updateThemeIcon();
+
+        createRipple(
+            themeBtn,
+            event
+        );
+
+    });
+
+
+
+    /* =========================================================
+       HEADER SCROLL EFFECT
+    ========================================================= */
+
+    const header =
+        document.getElementById("header");
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (window.scrollY > 30) {
+
+                header.classList.add(
+                    "scrolled"
+                );
+
+            } else {
+
+                header.classList.remove(
+                    "scrolled"
+                );
+
+            }
+
+        },
+        { passive: true }
+    );
+
+
+
+    /* =========================================================
+       SMOOTH NAVIGATION
+    ========================================================= */
+
+    document
+        .querySelectorAll('a[href^="#"]')
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                function(event) {
+
+                    const targetId =
+                        this.getAttribute("href");
+
+                    const target =
+                        document.querySelector(
+                            targetId
+                        );
+
+                    if (!target) return;
+
+                    event.preventDefault();
+
+                    const headerHeight =
+                        header.offsetHeight;
+
+                    const targetPosition =
+                        target.getBoundingClientRect().top
+                        + window.scrollY
+                        - headerHeight
+                        + 1;
+
+                    window.scrollTo({
+
+                        top:
+                            targetPosition,
+
+                        behavior:
+                            "smooth"
+
+                    });
+
+                }
+            );
+
+        });
+
+
+
+    /* =========================================================
+       REVEAL ON SCROLL
+    ========================================================= */
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "revealed"
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+
+    revealElements.forEach(
+        element =>
+            observer.observe(element)
+    );
+
+
+
+    /* =========================================================
+       PACKAGE AUTO MOVEMENT
+    ========================================================= */
+
+    const packageCards =
+        document.querySelectorAll(
+            ".package-card"
+        );
+
+
+    const packageObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        const card =
+                            entry.target;
+
+                        setTimeout(
+                            () => {
+
+                                card.classList.add(
+                                    "revealed"
+                                );
+
+                            },
+                            100
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.18
+            }
+        );
+
+
+    packageCards.forEach(
+        card =>
+            packageObserver.observe(card)
+    );
+
+
+
+    /* =========================================================
+       PACKAGE CLICK
+    ========================================================= */
+
+    packageCards.forEach(card => {
+
+        card.addEventListener(
+            "click",
+            function(event) {
+
+                /*
+                 لا نعيد تشغيل التأثير
+                 إذا كان الضغط على رابط واتساب
+                */
+
+                if (
+                    event.target.closest(
+                        ".btn-order"
+                    )
+                ) {
+
+                    this.classList.remove(
+                        "selected"
+                    );
+
+                    void this.offsetWidth;
+
+                    this.classList.add(
+                        "selected"
+                    );
+
+                    return;
+                }
+
+
+                this.classList.remove(
+                    "selected"
+                );
+
+                void this.offsetWidth;
+
+                this.classList.add(
+                    "selected"
+                );
+
+            }
+        );
+
+    });
+
+
+
+    /* =========================================================
+       RIPPLE EFFECT
+    ========================================================= */
+
+    function createRipple(
+        button,
+        event
+    ) {
+
+        const ripple =
+            document.createElement(
+                "span"
+            );
+
+        ripple.classList.add(
+            "ripple"
+        );
+
+
+        const rect =
+            button.getBoundingClientRect();
+
+
+        const size =
+            Math.max(
+                rect.width,
+                rect.height
+            );
+
+
+        ripple.style.width =
+            size + "px";
+
+        ripple.style.height =
+            size + "px";
+
+
+        const x =
+            event.clientX
+            - rect.left
+            - size / 2;
+
+
+        const y =
+            event.clientY
+            - rect.top
+            - size / 2;
+
+
+        ripple.style.left =
+            x + "px";
+
+        ripple.style.top =
+            y + "px";
+
+
+        button.appendChild(
+            ripple
+        );
+
+
+        setTimeout(
+            () => ripple.remove(),
+            600
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(".ripple-btn, .btn-order, .theme-btn")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                event => {
+
+                    createRipple(
+                        button,
+                        event
+                    );
+
+                }
+            );
+
+        });
+
+
+
+    /* =========================================================
+       PARALLAX LIGHT EFFECT
+    ========================================================= */
+
+    document
+        .querySelectorAll(".package-card, .offer-card")
+        .forEach(card => {
+
+            card.addEventListener(
+                "mousemove",
+                event => {
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+
+                    const x =
+                        event.clientX
+                        - rect.left;
+
+
+                    const y =
+                        event.clientY
+                        - rect.top;
+
+
+                    const centerX =
+                        rect.width / 2;
+
+
+                    const centerY =
+                        rect.height / 2;
+
+
+                    const rotateY =
+                        (x - centerX)
+                        / 35;
+
+
+                    const rotateX =
+                        (centerY - y)
+                        / 35;
+
+
+                    /*
+                       لا نطبق الحركة على
+                       الباقة الشعبية بقوة كبيرة
+                    */
+
+                    if (
+                        card.classList.contains(
+                            "popular"
+                        )
+                    ) {
+
+                        card.style.transform =
+                            `translateY(-8px)
+                             scale(1.035)
+                             rotateX(${rotateX}deg)
+                             rotateY(${rotateY}deg)`;
+
+                    } else {
+
+                        card.style.transform =
+                            `translateY(-8px)
+                             scale(1.015)
+                             rotateX(${rotateX}deg)
+                             rotateY(${rotateY}deg)`;
+                    }
+
+                }
+            );
+
+
+            card.addEventListener(
+                "mouseleave",
+                () => {
+
+                    if (
+                        card.classList.contains(
+                            "popular"
+                        )
+                    ) {
+
+                        card.style.transform =
+                            "scale(1.03)";
+
+                    } else {
+
+                        card.style.transform =
+                            "";
+
+                    }
+
+                }
+            );
+
+        });
+
+
+
+    /* =========================================================
+       AUTO SECTION NUDGE
+       ========================================================= */
+
+    const sections =
+        document.querySelectorAll(
+            ".section"
+        );
+
+
+    const sectionObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target.classList.add(
+                                "active-section"
+                            );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: 0.08
+            }
+        );
+
+
+    sections.forEach(
+        section =>
+            sectionObserver.observe(section)
+    );
+
+
+
+    /* =========================================================
+       PREVENT DOUBLE NAVIGATION
+       ========================================================= */
+
+    document
+        .querySelectorAll(".btn-order")
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    button.classList.add(
+                        "clicked"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* =========================================================
+       CONSOLE
+    ========================================================= */
+
+    console.log(
+        "⚡ SHOCK STORE Interactive System Loaded"
+    );
+
+</script>
+
+</body>
+</html>
